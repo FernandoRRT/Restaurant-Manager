@@ -1,32 +1,30 @@
 import type { Knex } from 'knex';
 import dotenv from 'dotenv';
+import path from 'path';
 
-if (process.env.NODE_ENV !== 'production') {
-  dotenv.config({ path: '.env.local' });
-}
-
-const isProduction = process.env.NODE_ENV === 'production';
+dotenv.config({ path: '.env.local' });
 
 const config: Knex.Config = {
   client: 'pg',
-  connection: isProduction
-    ? process.env.DATABASE_URL
-    : {
-        host: 'localhost',
-        port: 54320,
-        database: 'fintech_db',
-        user: 'postgres',
-        password: 'pswroot',
-      },
+  connection: process.env.DATABASE_URL || {
+    host: process.env.PGHOST,
+    port: Number(process.env.PGPORT || 5432),
+    database: process.env.PGDATABASE,
+    user: process.env.PGUSER,
+    password: process.env.PGPASSWORD,
+    ssl: { rejectUnauthorized: false },
+  },
   pool: {
     min: 0,
     max: 2,
   },
   migrations: {
-    directory: './db/migrations',
+    // Use absolute path for migrations directory
+    directory: path.join(process.cwd(), 'db', 'migrations'),
   },
   seeds: {
-    directory: './db/seeds',
+    // Use absolute path for seeds directory
+    directory: path.join(process.cwd(), 'db', 'seeds'),
   },
 };
 
