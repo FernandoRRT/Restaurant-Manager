@@ -12,7 +12,8 @@
     "install:force": "npm install --force",
     "knex": "tsx db/knex-cli.ts",
     "migrate": "tsx db/knex-cli.ts migrate:latest",
-    "rollback": "tsx db/knex-cli.ts migrate:rollback"
+    "rollback": "tsx db/knex-cli.ts migrate:rollback",
+    "seed": "tsx db/knex-cli.ts seed:run"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",

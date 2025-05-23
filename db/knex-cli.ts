@@ -3,8 +3,8 @@ import knex from './knex';
 type MigrationResult = [batch: number, migrations: string[]];
 
 async function main() {
-  let args = process.argv.slice(2);
-  if (args.length == 0) {
+  const args = process.argv.slice(2);
+  if (args.length === 0) {
     console.error('Error: missing knex command in argument');
     return;
   }
@@ -28,55 +28,67 @@ async function main() {
   };
 
   switch (args[0]) {
-    case 'migrate:up': {
+    case 'migrate:up':
       showMigrationResult('migrate:up', await knex.migrate.up());
       break;
-    }
-    case 'migrate:down': {
+
+    case 'migrate:down':
       showMigrationResult('migrate:down', await knex.migrate.down());
       break;
-    }
-    case 'migrate:latest': {
+
+    case 'migrate:latest':
       showMigrationResult('migrate:latest', await knex.migrate.latest());
       break;
-    }
+
     case 'migrate:make': {
-      // knex.migrate.make(name, [config])
-      // Creates a new migration, with the name of the migration being added.
-      // The name is required, and must be a string.
-      let name = args[1];
+      const name = args[1];
+      if (!name) {
+        console.error('Error: migration name is required');
+        return;
+      }
       showMakeAndVersionResult(
         'migrate:make',
         await knex.migrate.make(name, { directory: './db/migrations', name })
       );
       break;
     }
+
     case 'migrate:rollback': {
-      let config = undefined;
-      let all = args[1] === '--all';
-      showMigrationResult('rollback', await knex.migrate.rollback(config, all));
+      // use includes instead of direct index comparison
+      const all = args.includes('--all');
+      showMigrationResult('rollback', await knex.migrate.rollback(undefined, all));
       break;
     }
+
     case 'migrate:status': {
-      type Result = [{ name: string }[], { file: string }[]];
-      let [done, pending] = (await knex.migrate.list()) as Result;
+      const [done, pending] = await knex.migrate.list();
 
       console.log(done.length, 'applied migrations');
-      for (let each of done) {
-        console.log('- ' + each.name);
-      }
+      done.forEach((each: { name: string }) => console.log('- ' + each.name));
 
       console.log(pending.length, 'pending migrations');
-      for (let each of pending) {
-        console.log('- ' + each.file);
+      pending.forEach((each: { file: string }) => console.log('- ' + each.file));
+      break;
+    }
+
+    case 'seed:run': {
+      const rawResults = await knex.seed.run({ directory: './db/seeds' });
+      const results = rawResults.flat(); // now string[]
+
+      if (results.length === 0) {
+        console.log('No seed files were run.');
+      } else {
+        console.log('Seeds run:');
+        results.forEach((file: string) => console.log('- ' + file));
       }
       break;
     }
-    default: {
+
+    default:
       console.error('Error: unknown arguments:', args);
-    }
   }
 }
+
 main()
   .catch((e) => console.error(e))
   .then(() => knex.destroy());
