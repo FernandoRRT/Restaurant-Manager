@@ -15,15 +15,6 @@
     "rollback": "tsx db/knex-cli.ts migrate:rollback"
   },
   "dependencies": {
-    "react": "^19.0.0",
-    "next": "15.1.8",
-    "react-dom": "^19.0.0",
-    "dotenv": "^16.4.7",
-    "knex": "^3.1.0",
-    "uuid": "^11.0.5",
-    "pg": "^8.14.0",
-    "axios": "^1.8.2",
-    "webpack": "^5.98.0",
     "@emotion/cache": "^11.14.0",
     "@emotion/css": "^11.13.5",
     "@emotion/react": "^11.14.0",
@@ -32,29 +23,33 @@
     "@mui/material": "^6.4.1",
     "@mui/material-nextjs": "^6.3.1",
     "@mui/system": "^7.1.0",
-    "uuidv4": "^11.1.0"
+    "axios": "^1.8.2",
+    "dotenv": "^16.4.7",
+    "knex": "^3.1.0",
+    "next": "15.3.2",
+    "pg": "^8.14.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "uuid": "^11.1.0",
+    "webpack": "^5.98.0"
   },
   "resolutions": {
     "styled-components": "^5"
   },
   "devDependencies": {
-
-    "typescript": "^5",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "15.1.8",
     "@eslint/eslintrc": "^3",
-
-
     "@types/cookie": "^0.6.0",
     "@types/dotenv": "^6.1.1",
     "@types/knex": "^0.15.2",
-
+    "@types/node": "^20",
     "@types/pg": "^8.11.11",
+    "@types/react": "^19",
     "@types/react-color": "^3.0.13",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.2.5",
     "tsx": "^4.19.3",
+    "typescript": "^5",
     "webpack": "^5.98.0"
   }
 }

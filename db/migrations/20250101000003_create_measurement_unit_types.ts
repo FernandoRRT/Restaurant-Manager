@@ -2,14 +2,12 @@ import { Knex } from 'knex';
 
 export async function up(knex: Knex): Promise<void> {
   await knex.raw('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
-  await knex.schema.createTable('dishes', (table) => {
+  await knex.schema.createTable('measurement_unit_types', (table) => {
     table.uuid('id').primary().defaultTo(knex.raw('uuid_generate_v4()'));
-    table.string('name').notNullable();
-    table.decimal('value', 10, 2).notNullable(); // Preço de venda
-    table.decimal('cost', 10, 2).notNullable();  // Custo de preparo
+    table.string('name').notNullable().unique().comment('e.g., "mass", "volume"');
   });
 }
 
 export async function down(knex: Knex): Promise<void> {
-  await knex.schema.dropTableIfExists('dishes');
+  await knex.schema.dropTableIfExists('measurement_unit_types');
 }
