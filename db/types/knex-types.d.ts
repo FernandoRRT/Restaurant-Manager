@@ -1,0 +1,73 @@
+import type { DbTableBankInfo } from '@/utilities/constants/types/db/tables/BankInfo';
+import type { DbTableBusiness } from '@/utilities/constants/types/db/tables/Business';
+import type { DbTableBusinessCategory } from '@/utilities/constants/types/db/tables/BusinessCategory';
+import type { DbTableBusinessCategoryBusiness } from '@/utilities/constants/types/db/tables/BusinessCategoryBusiness';
+import type { DbTableBusinessRole } from '@/utilities/constants/types/db/tables/BusinessRole';
+import type { DbTableBusinessStaffSite } from '@/utilities/constants/types/db/tables/BusinessStaffSite';
+import type { DbTableBusinessStructure } from '@/utilities/constants/types/db/tables/BusinessStructure';
+import type { DbTableContact } from '@/utilities/constants/types/db/tables/Contact';
+import type { DbTableCountry } from '@/utilities/constants/types/db/tables/Country';
+import type { DbTableCreditCard } from '@/utilities/constants/types/db/tables/CreditCard';
+import type { DbTableCreditCardType } from '@/utilities/constants/types/db/tables/CreditCardType';
+import type { DbTableFacility } from '@/utilities/constants/types/db/tables/Facility';
+import type { DbTablePayment } from '@/utilities/constants/types/db/tables/Payment';
+import type { DbTablePaymentProvider } from '@/utilities/constants/types/db/tables/PaymentProvider';
+import type { DbTablePaymentType } from '@/utilities/constants/types/db/tables/PaymentType';
+import type { DbTableProcessPeriod } from '@/utilities/constants/types/db/tables/ProcessPeriod';
+import type { DbTableReceipt } from '@/utilities/constants/types/db/tables/Receipt';
+import type { DbTableSite } from '@/utilities/constants/types/db/tables/Site';
+import type { DbTableSystemRole } from '@/utilities/constants/types/db/tables/SystemRole';
+import type { DbTableTransaction } from '@/utilities/constants/types/db/tables/Transaction';
+import type { DbTableTransactionResponse } from '@/utilities/constants/types/db/tables/TransactionResponse';
+import type { DbTableTransactionSetting } from '@/utilities/constants/types/db/tables/TransactionSetting';
+import type { DbTableTransactionStatus } from '@/utilities/constants/types/db/tables/TransactionStatus';
+import type { DbTableUser } from '@/utilities/constants/types/db/tables/User';
+import type { DbTableBank } from '@fintech/utilities/constants/types/db/tables/Bank';
+import type { DbTablePerson } from '@fintech/utilities/constants/types/db/tables/Person';
+
+import { TableNames } from '@/utilities/constants/types/db/TableNames';
+
+declare module 'knex/types/tables' {
+  interface Tables {
+    [TableNames.BankInfo]: DbTableBankInfo;
+    [TableNames.Banks]: DbTableBank;
+    [TableNames.Business]: DbTableBusiness;
+    [TableNames.BusinessCategories]: DbTableBusinessCategory;
+    [TableNames.BusinessCategoryBusiness]: DbTableBusinessCategoryBusiness;
+    [TableNames.BusinessRoles]: DbTableBusinessRole;
+    [TableNames.BusinessStaffSite]: DbTableBusinessStaffSite;
+    [TableNames.BusinessStructure]: DbTableBusinessStructure;
+    [TableNames.Contact]: DbTableContact;
+    [TableNames.Countries]: DbTableCountry;
+    [TableNames.CreditCard]: DbTableCreditCard;
+    [TableNames.CreditCardType]: DbTableCreditCardType;
+    [TableNames.Facilities]: DbTableFacility;
+    [TableNames.MenuItemRoles]: DbTableMenuItemRole;
+    [TableNames.MenuItems]: DbTableMenuItem;
+    [TableNames.MenuTranslations]: DbTableMenuTranslation;
+    [TableNames.Payment]: DbTablePayment;
+    [TableNames.PaymentProvider]: DbTablePaymentProvider;
+    [TableNames.PaymentType]: DbTablePaymentType;
+    [TableNames.People]: DbTablePerson;
+    [TableNames.ProcessPeriod]: DbTableProcessPeriod;
+    [TableNames.Receipts]: DbTableReceipt;
+    [TableNames.Site]: DbTableSite;
+    [TableNames.StagingBankings]: DbTableStagingBanking;
+    [TableNames.StagingBusiness]: DbTableStagingBusiness;
+    [TableNames.StagingContacts]: DbTableStagingContact;
+    [TableNames.StagingEnroll]: DbTableStagingEnroll;
+    [TableNames.StagingSite]: DbTableStagingSite;
+    [TableNames.StagingUser]: DbTableStagingUser;
+    [TableNames.SupportTickets]: DbTableSupportTicket;
+    [TableNames.SupportTicketCategories]: DbTableSupportTicketCategory;
+    [TableNames.SupportTicketCategoryTranslations]: DbTableSupportTicketCategoryTranslation;
+    [TableNames.SupportTicketUpdates]: DbTableSupportTicketUpdate;
+    [TableNames.SupportTicketAttachments]: DbTableSupportTicketAttachment;
+    [TableNames.SystemRole]: DbTableSystemRole;
+    [TableNames.TransactionResponse]: DbTableTransactionResponse;
+    [TableNames.TransactionSettings]: DbTableTransactionSetting;
+    [TableNames.TransactionStatus]: DbTableTransactionStatus;
+    [TableNames.Transactions]: DbTableTransaction;
+    [TableNames.User]: DbTableUser;
+  }
+}
